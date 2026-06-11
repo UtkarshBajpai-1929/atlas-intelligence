@@ -11,21 +11,6 @@ export function ProductNav() {
           </span>
           <span className="text-[15px] font-semibold text-[#222222]">Atlas Intelligence</span>
         </Link>
-
-        <div className="flex items-center gap-3">
-          <Link
-            href="/compare/cursor-ai-vs-claude"
-            className="hidden h-9 items-center rounded-full px-4 text-[13px] font-semibold text-[#222222] transition hover:bg-[#f7f7f7] md:flex"
-          >
-            Compare
-          </Link>
-          <button className="hidden h-9 w-9 items-center justify-center rounded-full border border-[#dddddd] text-[#717171] shadow-sm md:flex">
-            <Search size={15} />
-          </button>
-          <button className="flex h-9 w-9 items-center justify-center rounded-full border border-[#dddddd] text-[#717171] shadow-sm md:hidden">
-            <Menu size={16} />
-          </button>
-        </div>
       </div>
     </header>
   );
@@ -48,7 +33,7 @@ export function ProductFooter() {
   ];
 
   return (
-    <footer className="mt-24 border-t border-[#ebebeb] bg-[#f7f7f7]">
+    <footer className="mt-8 border-t border-[#ebebeb] bg-[#f7f7f7]">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-14 md:grid-cols-[1.7fr_1fr_1fr_1fr] lg:px-8">
         <div>
           <Link href="/products" className="flex items-center gap-3">

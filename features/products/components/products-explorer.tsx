@@ -250,7 +250,7 @@ export function ProductsExplorer({ products, categories }: ProductsExplorerProps
       <section id="catalog" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="mb-9 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h2 className="font-serif text-[34px] font-semibold leading-tight tracking-[-0.02em] text-[#222222] md:text-[40px]">
+            <h2 className="font-serif text-[34px] font-md leading-tight tracking-[-0.02em] text-[#222222] md:text-[40px]">
               All AI products
             </h2>
             <p className="mt-2 text-[14px] text-[#717171]">

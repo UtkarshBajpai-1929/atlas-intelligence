@@ -58,7 +58,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
 
   return (
     <div>
-      <section className="border-b border-[#ebebeb] bg-white px-6 py-16 lg:px-8">
+      <section className="border-b border-[#ebebeb] bg-white px-6 py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Link
             href="/products"
@@ -71,12 +71,12 @@ export default async function ComparePage({ params }: ComparePageProps) {
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div>
-              <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#ff385c]">
+              <p className="flex items-center gap-2 text-[24px] font-bold uppercase tracking-[0.18em] text-[#ff385c]">
                 <BarChart3 size={15} />
-                Product comparison
+                Product Comparison
               </p>
-              <h1 className="mt-5 max-w-xl font-serif text-[46px] font-semibold leading-[1.02] tracking-[-0.035em] text-[#222222] md:text-[64px]">
-                Compare {comparedProducts.map((product) => product.name).join(" vs ")}
+              <h1 className="mt-5 max-w-xl font-serif text-[46px] leading-[1.02] tracking-[-0.035em] text-[#222222] md:text-[64px]">
+               {comparedProducts.map((product) => product.name).join(" vs ")}
               </h1>
               <p className="mt-6 max-w-xl text-[16px] leading-8 text-[#717171]">
                 Review positioning, pricing, categories, traction, and core
@@ -123,64 +123,203 @@ export default async function ComparePage({ params }: ComparePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#f7f7f7] px-6 py-16 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="overflow-hidden rounded-[22px] border border-[#dddddd] bg-white shadow-[0_18px_48px_rgba(0,0,0,0.05)]">
+      <section className="bg-[#f7f7f7] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+  <div className="mx-auto max-w-7xl">
+    <div className="overflow-x-auto rounded-[22px] border border-[#dddddd] bg-white shadow-[0_18px_48px_rgba(0,0,0,0.05)]">
+      <div className="min-w-[720px]">
+        {/* Header */}
+        <div
+          className="grid border-b border-[#ebebeb] bg-white"
+          style={{
+            gridTemplateColumns: `180px repeat(${comparedProducts.length}, minmax(220px, 1fr))`,
+          }}
+        >
+          <div className="p-5 text-[12px] font-bold uppercase tracking-[0.16em] text-[#717171]">
+            Snapshot
+          </div>
+
+          {comparedProducts.map((product) => (
             <div
-              className="grid border-b border-[#ebebeb] bg-white"
-              style={{
-                gridTemplateColumns: `minmax(180px, 0.75fr) repeat(${comparedProducts.length}, minmax(220px, 1fr))`,
-              }}
+              key={product.id}
+              className="border-l border-[#ebebeb] p-5"
             >
-              <div className="p-5 text-[12px] font-bold uppercase tracking-[0.16em] text-[#717171]">
-                Snapshot
-              </div>
-              {comparedProducts.map((product) => (
-                <div key={product.id} className="border-l border-[#ebebeb] p-5">
-                  <div className="flex items-center gap-3">
-                    <ProductLogo product={product} size="sm" />
-                    <div>
-                      <p className="text-[14px] font-semibold text-[#222222]">
-                        {product.name}
-                      </p>
-                      <p className="text-[12px] text-[#717171]">{product.tagline}</p>
-                    </div>
-                  </div>
+              <div className="flex items-center gap-3">
+                <ProductLogo product={product} size="sm" />
+
+                <div className="min-w-0">
+                  <p className="truncate text-[14px] font-semibold text-[#222222]">
+                    {product.name}
+                  </p>
+
+                  <p className="line-clamp-2 text-[12px] text-[#717171]">
+                    {product.tagline}
+                  </p>
                 </div>
-              ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Comparison Rows */}
+        {[
+          [
+            "Pricing",
+            ...comparedProducts.map((product) =>
+              formatPricing(
+                product.pricing.type,
+                product.pricing.startingPrice
+              )
+            ),
+          ],
+          [
+            "Rating",
+            ...comparedProducts.map((product) =>
+              product.stats.rating.toFixed(1)
+            ),
+          ],
+          [
+            "Monthly visits",
+            ...comparedProducts.map((product) =>
+              formatVisits(product.stats.monthlyVisits)
+            ),
+          ],
+          [
+            "Reviews",
+            ...comparedProducts.map((product) =>
+              product.stats.reviewCount.toLocaleString()
+            ),
+          ],
+          [
+            "Founded",
+            ...comparedProducts.map((product) =>
+              String(product.company.foundedYear ?? "N/A")
+            ),
+          ],
+          [
+            "Location",
+            ...comparedProducts.map(
+              (product) => product.company.location ?? "Global"
+            ),
+          ],
+        ].map((row) => (
+          <div
+            key={row[0]}
+            className="grid border-b border-[#ebebeb] last:border-b-0"
+            style={{
+              gridTemplateColumns: `180px repeat(${comparedProducts.length}, minmax(220px, 1fr))`,
+            }}
+          >
+            {/* Label Column */}
+            <div className="bg-[#fafafa] p-5 text-[13px] font-semibold text-[#222222]">
+              {row[0]}
             </div>
 
-            {[
-              ["Pricing", ...comparedProducts.map((product) => formatPricing(product.pricing.type, product.pricing.startingPrice))],
-              ["Rating", ...comparedProducts.map((product) => product.stats.rating.toFixed(1))],
-              ["Monthly visits", ...comparedProducts.map((product) => formatVisits(product.stats.monthlyVisits))],
-              ["Reviews", ...comparedProducts.map((product) => product.stats.reviewCount.toLocaleString())],
-              ["Founded", ...comparedProducts.map((product) => String(product.company.foundedYear ?? "N/A"))],
-              ["Location", ...comparedProducts.map((product) => product.company.location ?? "Global")],
-            ].map((row) => (
+            {/* Data Columns */}
+            {row.slice(1).map((value, index) => (
               <div
-                key={row[0]}
-                className="grid border-b border-[#ebebeb] last:border-b-0"
-                style={{
-                  gridTemplateColumns: `minmax(180px, 0.75fr) repeat(${comparedProducts.length}, minmax(220px, 1fr))`,
-                }}
+                key={`${row[0]}-${comparedProducts[index].slug}`}
+                className="border-l border-[#ebebeb] p-5 text-[14px] text-[#717171]"
               >
-                <div className="bg-[#fafafa] p-5 text-[13px] font-semibold text-[#222222]">
-                  {row[0]}
-                </div>
-                {row.slice(1).map((value, index) => (
-                  <div
-                    key={`${row[0]}-${comparedProducts[index].slug}`}
-                    className="border-l border-[#ebebeb] p-5 text-[14px] text-[#717171]"
-                  >
-                    {value}
-                  </div>
-                ))}
+                {value}
               </div>
             ))}
           </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Feature Comparison */}
+<section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+  <div className="mb-8">
+    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#ff385c]">
+      Capabilities
+    </p>
+
+    <h2 className="mt-4 text-[28px] font-semibold tracking-[-0.03em] text-[#222222] sm:text-[32px]">
+      Feature comparison
+    </h2>
+  </div>
+
+  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+    {comparedProducts.map((product) => (
+      <div
+        key={product.id}
+        className="rounded-[20px] border border-[#dddddd] bg-white p-5 sm:p-6"
+      >
+        <div className="flex items-center gap-3">
+          <ProductLogo product={product} />
+
+          <div className="min-w-0">
+            <h3 className="truncate text-[18px] font-semibold text-[#222222]">
+              {product.name}
+            </h3>
+
+            <p className="flex items-center gap-1 text-[12px] font-semibold text-[#ff385c]">
+              <Star size={13} fill="currentColor" />
+              {product.stats.rating.toFixed(1)}
+            </p>
+          </div>
         </div>
-      </section>
+
+        <div className="mt-6 space-y-3">
+          {featureRows.map((feature, index) => {
+            const active =
+              feature === "Free plan"
+                ? product.pricing.type === "freemium" ||
+                  product.pricing.type === "free"
+                : index < product.features.length ||
+                  product.categories.length > 0;
+
+            return (
+              <div
+                key={feature}
+                className="flex items-center justify-between rounded-[12px] bg-[#f7f7f7] px-4 py-3"
+              >
+                <span className="text-[13px] text-[#717171]">
+                  {feature}
+                </span>
+
+                {active ? (
+                  <Check size={16} className="text-[#00a699]" />
+                ) : (
+                  <X size={16} className="text-[#b0b0b0]" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* CTA Section */}
+  <div className="mt-12 rounded-[22px] border border-[#dddddd] bg-[#222222] p-6 text-white sm:p-8">
+    <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p className="flex items-center gap-2 text-[12px] font-semibold text-white/65">
+          <TrendingUp size={15} />
+          Compare more products
+        </p>
+
+        <h2 className="mt-3 text-[24px] font-semibold tracking-[-0.02em] sm:text-[28px]">
+          Build another side-by-side view
+        </h2>
+      </div>
+
+      <Link
+        href={`/compare/${getAllProducts()
+          .slice(0, 3)
+          .map((product) => product.slug)
+          .join("-vs-")}`}
+        className="inline-flex h-12 items-center justify-center rounded-[12px] bg-[#ff385c] px-5 text-[14px] font-semibold text-white transition hover:opacity-90"
+      >
+        Compare top products
+      </Link>
+    </div>
+  </div>
+</section>
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="mb-8">
