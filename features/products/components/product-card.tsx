@@ -12,7 +12,7 @@ const logoStyles: Record<string, string> = {
   windsurf: "bg-[#075985] text-white",
   "replit-agent": "bg-[#ff6b00] text-white",
   codeium: "bg-[#10a37f] text-white",
-  "notion-ai": "bg-white text-[#111] ring-1 ring-[#e6e0da]",
+  "notion-ai": "bg-white text-[#111] ring-1 ring-[#dddddd]",
   linear: "bg-[#615ef0] text-white",
   chatgpt: "bg-[#10b981] text-white",
   gemini: "bg-gradient-to-br from-[#5b5ff0] to-[#ff4fb8] text-white",
@@ -62,7 +62,7 @@ export function ProductCard({ product, compact = false, className = "" }: Produc
   return (
     <Link
       href={`/product/${product.slug}`}
-      className={`group block rounded-[18px] border border-[#dddddd] bg-white p-6 shadow-[0_12px_34px_rgba(29,24,20,0.035)] transition duration-200 hover:-translate-y-0.5 hover:border-[#cfcfcf] hover:shadow-[0_18px_42px_rgba(29,24,20,0.06)] ${compact ? "min-h-[188px]" : "min-h-[196px]"} ${className}`}
+      className={`group block rounded-[24px] border border-[#dddddd] bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-[#b0b0b0] hover:shadow-[0_18px_46px_rgba(0,0,0,0.08)] ${compact ? "min-h-[188px]" : "min-h-[196px]"} ${className}`}
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4">
@@ -72,7 +72,7 @@ export function ProductCard({ product, compact = false, className = "" }: Produc
               <h3 className="truncate text-[15px] font-semibold leading-tight text-[#222222]">
                 {product.name}
               </h3>
-              <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#f1a3ae] text-[9px] font-medium text-[#f05d73]">
+              <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#ffb3c1] text-[9px] font-medium text-[#ff385c]">
                 o
               </span>
             </div>
@@ -84,25 +84,25 @@ export function ProductCard({ product, compact = false, className = "" }: Produc
         <Bookmark
           size={17}
           strokeWidth={1.8}
-          className="mt-0.5 shrink-0 text-[#9f9891] transition group-hover:text-[#111111]"
+          className="mt-0.5 shrink-0 text-[#717171] transition group-hover:text-[#222222]"
         />
       </div>
 
-      <p className="mt-5 line-clamp-2 text-[14px] leading-6 text-[#5f5a55]">
+      <p className="mt-5 line-clamp-2 text-[14px] leading-6 text-[#717171]">
         {product.description}
       </p>
 
       <div className="mt-6 flex items-center justify-between gap-3">
         <div className="flex min-w-0 flex-wrap items-center gap-2">
-          <span className="rounded-full bg-[#f7f4f1] px-2.5 py-1 text-[11px] font-medium text-[#665f58]">
+          <span className="rounded-full bg-[#f7f7f7] px-2.5 py-1 text-[11px] font-medium text-[#717171]">
             {primaryCategory}
           </span>
           <span className="rounded-full bg-[#eef6fb] px-2.5 py-1 text-[11px] font-semibold text-[#3b82a0]">
             {pricingLabel}
           </span>
         </div>
-        <div className="flex items-center gap-1 text-[11px] font-semibold text-[#2c2a28]">
-          <TrendingUp size={13} strokeWidth={2} className="text-[#ef5b6f]" />
+        <div className="flex items-center gap-1 text-[11px] font-semibold text-[#222222]">
+          <TrendingUp size={13} strokeWidth={2} className="text-[#ff385c]" />
           {Math.round(product.stats.rating * 20)}
         </div>
       </div>

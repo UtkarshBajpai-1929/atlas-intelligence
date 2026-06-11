@@ -9,7 +9,7 @@ export function ProductNav() {
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ff385c] text-[13px] font-bold text-white">
             A
           </span>
-          <span className="text-[15px] font-semibold text-[#222222]">Atlas</span>
+          <span className="text-[15px] font-semibold text-[#222222]">Atlas Intelligence</span>
         </Link>
 
         <div className="flex items-center gap-3">
@@ -89,9 +89,9 @@ export function ProductFooter() {
       <div className="mx-auto flex max-w-7xl flex-col gap-4 border-t border-[#dddddd] px-6 py-7 text-[12px] text-[#717171] md:flex-row md:items-center md:justify-between lg:px-8">
         <span>© 2026 Atlas Intelligence. All rights reserved.</span>
         <div className="flex gap-6">
-          <Link href="#">Privacy</Link>
-          <Link href="#">Terms</Link>
-          <Link href="#">Cookies</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
+          <Link href="/cookies">Cookies</Link>
         </div>
       </div>
     </footer>
