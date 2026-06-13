@@ -158,15 +158,25 @@ export function ProductsExplorer({ products, categories }: ProductsExplorerProps
   return (
     <div>
       <section className="border-b border-[#ebebeb] bg-[#FAF9F6] px-6 pb-10 pt-10 lg:px-8">
+          <div
+    className="absolute inset-0 opacity-[0.35] pointer-events-none"
+    style={{
+      backgroundImage: `
+        linear-gradient(to right, rgba(255,56,92,0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,56,92,0.2) 1px, transparent 1px)
+      `,
+      backgroundSize: "40px 40px",
+    }}
+  />
         <div className="mx-auto max-w-5xl text-center">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#dddddd] bg-white px-4 py-2 text-[12px] font-semibold text-[#717171] shadow-[0_8px_24px_rgba(0,0,0,0.04)]">
             <Sparkles size={14} className="text-[#ff385c]" />
-            1,284 products · updated daily
+           Powered By · Atlas Intelligence
           </div>
 
-          <h1 className="mx-auto mt-8 max-w-4xl font-semibold font-serif text-[48px] leading-[0.98] tracking-[-0.035em] text-[#222222] md:text-[72px]">
+          <h1 className="mx-auto mt-8 max-w-4xl font-semibold font-serif text-[36px] leading-[0.98] tracking-[-0.035em] text-[#222222] md:text-[48px]">
             Discover The World&apos;s
-            <span className="block italic font-medium text-[#ff385c]">Best AI Products.</span>
+            <span className="font-medium text-[#ff385c]">&nbsp; Best AI Products.</span>
           </h1>
 
           <p className="mx-auto mt-8 max-w-[640px] text-[17px] leading-8 text-[#717171]">
@@ -216,6 +226,7 @@ export function ProductsExplorer({ products, categories }: ProductsExplorerProps
             ))}
           </div>
         </div>
+        
       </section>
 
       <section className="sticky top-16 z-30 border-b border-[#ebebeb] bg-white/95 backdrop-blur-xl">
